@@ -1,0 +1,247 @@
+{
+  "version": "1.0",
+  "created": "2025-07-06T14:01:28.050762",
+  "last_updated": "2025-07-06T14:03:36.880774",
+  "tokens": {
+    "a171c82771d18749c2250149ae43bc19": {
+      "token_address": "71Jvq4Epe2FCJ7JFSF7jLXdNk1Wy4Bhqd9iL6bEFELvg",
+      "token_name": "GOR",
+      "alert_timestamp": 1750287052,
+      "processed_at": "2025-07-06T14:01:36.003787",
+      "success": true,
+      "error_msg": null
+    },
+    "a9093d1a446fd4f4457445b7ff504cb4": {
+      "token_address": "GkyPYa7NnCFbduLknCfBfP7p8564X1VZhwZYJ6CZpump",
+      "token_name": "CHILLHOUSE",
+      "alert_timestamp": 1750935881,
+      "processed_at": "2025-07-06T14:01:43.238009",
+      "success": true,
+      "error_msg": null
+    },
+    "27c95bb3d85c0e4b04c927fadbe49a11": {
+      "token_address": "DQnkBM4eYYMnVE8Qy2K3BB7uts1fh2EwBVktEz6jpump",
+      "token_name": "DJI6930",
+      "alert_timestamp": 1749240213,
+      "processed_at": "2025-07-06T14:01:44.511308",
+      "success": true,
+      "error_msg": null
+    },
+    "ed76796ca51a9c1a26740d5deae4b6aa": {
+      "token_address": "5c74v6Px9RKwdGWCfqLGfEk7UZfE3Y4qJbuYrLbVG63V",
+      "token_name": "solami",
+      "alert_timestamp": 1750778194,
+      "processed_at": "2025-07-06T14:01:49.437136",
+      "success": true,
+      "error_msg": null
+    },
+    "fddc29d1113164440c2aff00e85377ac": {
+      "token_address": "CzHc1ugMNhim5JCJC8ebbp4k14jfrbZx1HNcMyEppump",
+      "token_name": "MUSK",
+      "alert_timestamp": 1749149700,
+      "processed_at": "2025-07-06T14:01:54.236284",
+      "success": true,
+      "error_msg": null
+    },
+    "9e75fff8901336ff6f6466136b36e019": {
+      "token_address": "3oQwNvAfZMuPWjVPC12ukY7RPA9JiGwLod6Pr4Lkpump",
+      "token_name": "POKE6900",
+      "alert_timestamp": 1750866368,
+      "processed_at": "2025-07-06T14:01:58.323030",
+      "success": true,
+      "error_msg": null
+    },
+    "7824036a89af894afea1ae51b4a9ab2e": {
+      "token_address": "8Q8KPBL21FVatn2C1EaxAQSorAkHW2W2jDUXapVPZmhm",
+      "token_name": "OSCAR",
+      "alert_timestamp": 1750397548,
+      "processed_at": "2025-07-06T14:02:02.959135",
+      "success": true,
+      "error_msg": null
+    },
+    "f2b4d4cbb89c0a29f62128e9bedb15aa": {
+      "token_address": "HtrmuNs4nESVg5i8gHyufDpGN5HHKqPmFfbQV9yupump",
+      "token_name": "lolcoin",
+      "alert_timestamp": 1750376159,
+      "processed_at": "2025-07-06T14:02:05.739652",
+      "success": true,
+      "error_msg": null
+    },
+    "04b271deb5b6cb8a8524d94d932f263f": {
+      "token_address": "4JbAmb23ziB1gTYxkcaqqonwr18yqMtYh7uqDbKZpump",
+      "token_name": "BORDERS",
+      "alert_timestamp": 1749882186,
+      "processed_at": "2025-07-06T14:02:10.360260",
+      "success": true,
+      "error_msg": null
+    },
+    "8fa5835bff11dff1b47645ba9b1c7e2d": {
+      "token_address": "E4n5gooEoFaDPb1oSDmN2VXjWKekrTn3EFE7KjNKpump",
+      "token_name": "M2",
+      "alert_timestamp": 1749762468,
+      "processed_at": "2025-07-06T14:02:14.987294",
+      "success": true,
+      "error_msg": null
+    },
+    "b71a33d784b9c39c94964fb0a19806d1": {
+      "token_address": "2KK4YMi24Tqo6tDn8mzYWkNdGjG3ufdXBjmLv7Fapump",
+      "token_name": "void",
+      "alert_timestamp": 1749624081,
+      "processed_at": "2025-07-06T14:02:18.751377",
+      "success": true,
+      "error_msg": null
+    },
+    "39964aa844ef3d3ff129ee2fd1d24273": {
+      "token_address": "7DKFa79o6QfbGGEtBZ5ZYBJw1qLJWyNuVoMD5rxbpump",
+      "token_name": "Lingang",
+      "alert_timestamp": 1749563348,
+      "processed_at": "2025-07-06T14:02:21.948301",
+      "success": true,
+      "error_msg": null
+    },
+    "ca6eccd54292928a62038346b430be49": {
+      "token_address": "5C8LMqZ9dbQ3RWoe5pFk5fJPhgiBQtBYdMnzekfJpump",
+      "token_name": "Toli",
+      "alert_timestamp": 1749531344,
+      "processed_at": "2025-07-06T14:02:25.466956",
+      "success": true,
+      "error_msg": null
+    },
+    "b8b7e532c8e8e0866aaae19ac7f6876d": {
+      "token_address": "DHS1JnKrzmaxGScdcNigkgBRpY4pNeLeoTaoPZhipump",
+      "token_name": "MCDC",
+      "alert_timestamp": 1749430638,
+      "processed_at": "2025-07-06T14:02:27.992758",
+      "success": true,
+      "error_msg": null
+    },
+    "4ff5dab9f8aaf372b1e8d80d141146ec": {
+      "token_address": "FJjKH9Xp2SvNDNUSN7X9T4uMNafFEYzbZpnwEZXKpump",
+      "token_name": "BoatKid",
+      "alert_timestamp": 1751118497,
+      "processed_at": "2025-07-06T14:02:32.714041",
+      "success": true,
+      "error_msg": null
+    },
+    "dbb32315576861cb996d4770930cf52c": {
+      "token_address": "7Qs5wnmnTLmBdVRZKPBYVkdefABRa4KLwWwHZanbpump",
+      "token_name": "HULKED",
+      "alert_timestamp": 1751014977,
+      "processed_at": "2025-07-06T14:02:36.284651",
+      "success": true,
+      "error_msg": null
+    },
+    "455ba3e9a7a30e9e3b68923f48971e34": {
+      "token_address": "tdzUKGeAchLRzpYBzmBWEGaoP7E8EQ8hPv8Eqi8pump",
+      "token_name": "MEERKAT",
+      "alert_timestamp": 1750775932,
+      "processed_at": "2025-07-06T14:02:39.792953",
+      "success": true,
+      "error_msg": null
+    },
+    "491a7f39817245eaa94ffdbd4aa42bbe": {
+      "token_address": "5iooMHkYiJRM9bsBVtKUT5J7JwuzJq6758iUhb9Epump",
+      "token_name": "anus",
+      "alert_timestamp": 1750472664,
+      "processed_at": "2025-07-06T14:02:43.573564",
+      "success": true,
+      "error_msg": null
+    },
+    "978669e0270cb38c70ee87663d7179d7": {
+      "token_address": "G8dUSvywefr4GvfFZBZiLHmbjnwjrrJPAnVifjj7pump",
+      "token_name": "Monitor",
+      "alert_timestamp": 1749837682,
+      "processed_at": "2025-07-06T14:02:45.426683",
+      "success": true,
+      "error_msg": null
+    },
+    "70bdd9e2c907a96ef9e8783410f3143f": {
+      "token_address": "HWrgYyGdivwuxV2ePxbk6vwkrKYqMa7is9fYMm5kcQWY",
+      "token_name": "ALICE",
+      "alert_timestamp": 1749827144,
+      "processed_at": "2025-07-06T14:02:48.122543",
+      "success": true,
+      "error_msg": null
+    },
+    "3d7a433e4bd2baa83541dd063686d44f": {
+      "token_address": "JBahfY5TSFaBooJ5N186Zd9JNvVgm9iHRJSUFT5KqNxA",
+      "token_name": "RICO",
+      "alert_timestamp": 1749712558,
+      "processed_at": "2025-07-06T14:02:51.040658",
+      "success": true,
+      "error_msg": null
+    },
+    "871e249c0a390271ab21e74b04838f50": {
+      "token_address": "BbbwE8rudhjK4husSRc37X54mYyDBRcykJ7fk5oHpump",
+      "token_name": "TBC",
+      "alert_timestamp": 1749700900,
+      "processed_at": "2025-07-06T14:02:53.037820",
+      "success": true,
+      "error_msg": null
+    },
+    "17a66bc6a6d4cdbbfd263e07d8f98668": {
+      "token_address": "D4JFHFqzysbbb86CYaeFkA5xKVmjgeSpquWUP5NxDjkM",
+      "token_name": "KILLBILL",
+      "alert_timestamp": 1749091862,
+      "processed_at": "2025-07-06T14:02:57.249305",
+      "success": true,
+      "error_msg": null
+    },
+    "fd8ebe6bb9e334d66cc7f124fe96c900": {
+      "token_address": "CGkRYvHnV6guL8DMadWG57qe6qUm6m3zDyGpMrcvpump",
+      "token_name": "CRUISE",
+      "alert_timestamp": 1748965699,
+      "processed_at": "2025-07-06T14:03:00.478294",
+      "success": true,
+      "error_msg": null
+    },
+    "d6927b2754bd174d6bd0dd385d8f6b3f": {
+      "token_address": "5umKhqeUvXWhs1vusXkf6CbZLvHbDt3bHZGQez7vpump",
+      "token_name": "chat",
+      "alert_timestamp": 1748785627,
+      "processed_at": "2025-07-06T14:03:04.012448",
+      "success": true,
+      "error_msg": null
+    },
+    "8eaa5a1393583f230988379b683eb9e7": {
+      "token_address": "GEo9uMBTvagNAX6Paf4KEuZ94Wi5K1ZjYfvhoSfKpump",
+      "token_name": "worthless",
+      "alert_timestamp": 1751231680,
+      "processed_at": "2025-07-06T14:03:12.446383",
+      "success": true,
+      "error_msg": null
+    },
+    "dc45ffda6ada756bc91451e76f3afad4": {
+      "token_address": "DWVBoShguKgtLrM2sUyVe8kQZTEzwr9DN8TnbtUnpump",
+      "token_name": "GIRLIES",
+      "alert_timestamp": 1751018245,
+      "processed_at": "2025-07-06T14:03:19.352304",
+      "success": true,
+      "error_msg": null
+    },
+    "25d663459faa230906685f85ffa32772": {
+      "token_address": "4dmQFkCM1WiUhC75UndLkmMtWj78fQJUvfc4xpMLpump",
+      "token_name": "BUNK",
+      "alert_timestamp": 1750694632,
+      "processed_at": "2025-07-06T14:03:26.212847",
+      "success": true,
+      "error_msg": null
+    },
+    "5b331a66bccf3bf0d6f7b910676919ed": {
+      "token_address": "HrXK98VXjxuiRYj4PmWSZ26pJ2tCTJA223Jffv1wpump",
+      "token_name": "DANGER",
+      "alert_timestamp": 1750622117,
+      "processed_at": "2025-07-06T14:03:30.502922",
+      "success": true,
+      "error_msg": null
+    },
+    "2ea0f09dd51fa7a492165b4037da5b64": {
+      "token_address": "Ep53NDxoipoyFyh4dRc3fi1XqJPkE8Rw7Sbji6trpump",
+      "token_name": "T1",
+      "alert_timestamp": 1750075430,
+      "processed_at": "2025-07-06T14:03:36.880769",
+      "success": true,
+      "error_msg": null
+    }
+  }
+}
