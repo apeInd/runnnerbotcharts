@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Price Charts - Индекс</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e1117;
+            color: #fafafa;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #00cc96;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .stats {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #262730;
+            border-radius: 8px;
+            border: 1px solid #404040;
+        }
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .page-card {
+            background-color: #262730;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #404040;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        .page-card a {
+            color: #00cc96;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .page-card a:hover {
+            color: #00a876;
+        }
+        .page-info {
+            color: #888;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .back-home {
+            margin-top: 40px;
+        }
+        .back-home a {
+            background-color: #00cc96;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .back-home a:hover {
+            background-color: #00a876;
+        }
+        .search-container {
+            margin: 30px 0;
+            padding: 25px;
+            background-color: #262730;
+            border-radius: 12px;
+            border: 1px solid #404040;
+        }
+        .search-title {
+            color: #00cc96;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #1a1a1a;
+            border: 2px solid #404040;
+            border-radius: 8px;
+            color: #fafafa;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #00cc96;
+        }
+        .search-input::placeholder {
+            color: #888;
+        }
+        .search-button {
+            background-color: #00cc96;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #00a876;
+        }
+        .search-button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        .search-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .search-result.success {
+            background-color: rgba(0, 204, 150, 0.1);
+            border: 1px solid #00cc96;
+            color: #00cc96;
+        }
+        .search-result.error {
+            background-color: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+            color: #ff6b6b;
+        }
+        .token-info {
+            margin-top: 10px;
+            color: #fafafa;
+        }
+        .token-link {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #00cc96;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .token-link:hover {
+            background-color: #00a876;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Token Price Charts</h1>
+        
+        <!-- Search Container -->
+        <div class="search-container">
+            <div class="search-title">🔍 Поиск токена по адресу</div>
+            <input
+                type="text"
+                id="tokenSearch"
+                class="search-input"
+                placeholder="Введите адрес токена (например: GyEJPVTVVdBURwMWZNKF3ifjJ4Pj4Q4nFV3DTcnHg59d)"
+                maxlength="50"
+            >
+            <button id="searchButton" class="search-button">Найти токен</button>
+            <div id="searchResult" class="search-result"></div>
+        </div>
+        
+        <div class="stats">
+            <h3>Статистика</h3>
+            <p>Всего графиков: <strong>699</strong></p>
+            <p>Страниц: <strong>140</strong></p>
+            <p>Сгенерировано: <strong>06.07.2025 16:06:33</strong></p>
+        </div>
+        
+        <div class="pages-grid">
+            <div class="page-card">
+                <a href="charts_page_1.html">Страница 1</a>
+                <div class="page-info">
+                    Графики 1-5
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_2.html">Страница 2</a>
+                <div class="page-info">
+                    Графики 6-10
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_3.html">Страница 3</a>
+                <div class="page-info">
+                    Графики 11-15
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_4.html">Страница 4</a>
+                <div class="page-info">
+                    Графики 16-20
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_5.html">Страница 5</a>
+                <div class="page-info">
+                    Графики 21-25
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_6.html">Страница 6</a>
+                <div class="page-info">
+                    Графики 26-30
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_7.html">Страница 7</a>
+                <div class="page-info">
+                    Графики 31-35
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_8.html">Страница 8</a>
+                <div class="page-info">
+                    Графики 36-40
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_9.html">Страница 9</a>
+                <div class="page-info">
+                    Графики 41-45
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_10.html">Страница 10</a>
+                <div class="page-info">
+                    Графики 46-50
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_11.html">Страница 11</a>
+                <div class="page-info">
+                    Графики 51-55
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_12.html">Страница 12</a>
+                <div class="page-info">
+                    Графики 56-60
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_13.html">Страница 13</a>
+                <div class="page-info">
+                    Графики 61-65
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_14.html">Страница 14</a>
+                <div class="page-info">
+                    Графики 66-70
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_15.html">Страница 15</a>
+                <div class="page-info">
+                    Графики 71-75
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_16.html">Страница 16</a>
+                <div class="page-info">
+                    Графики 76-80
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_17.html">Страница 17</a>
+                <div class="page-info">
+                    Графики 81-85
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_18.html">Страница 18</a>
+                <div class="page-info">
+                    Графики 86-90
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_19.html">Страница 19</a>
+                <div class="page-info">
+                    Графики 91-95
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_20.html">Страница 20</a>
+                <div class="page-info">
+                    Графики 96-100
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_21.html">Страница 21</a>
+                <div class="page-info">
+                    Графики 101-105
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_22.html">Страница 22</a>
+                <div class="page-info">
+                    Графики 106-110
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_23.html">Страница 23</a>
+                <div class="page-info">
+                    Графики 111-115
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_24.html">Страница 24</a>
+                <div class="page-info">
+                    Графики 116-120
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_25.html">Страница 25</a>
+                <div class="page-info">
+                    Графики 121-125
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_26.html">Страница 26</a>
+                <div class="page-info">
+                    Графики 126-130
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_27.html">Страница 27</a>
+                <div class="page-info">
+                    Графики 131-135
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_28.html">Страница 28</a>
+                <div class="page-info">
+                    Графики 136-140
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_29.html">Страница 29</a>
+                <div class="page-info">
+                    Графики 141-145
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_30.html">Страница 30</a>
+                <div class="page-info">
+                    Графики 146-150
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_31.html">Страница 31</a>
+                <div class="page-info">
+                    Графики 151-155
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_32.html">Страница 32</a>
+                <div class="page-info">
+                    Графики 156-160
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_33.html">Страница 33</a>
+                <div class="page-info">
+                    Графики 161-165
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_34.html">Страница 34</a>
+                <div class="page-info">
+                    Графики 166-170
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_35.html">Страница 35</a>
+                <div class="page-info">
+                    Графики 171-175
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_36.html">Страница 36</a>
+                <div class="page-info">
+                    Графики 176-180
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_37.html">Страница 37</a>
+                <div class="page-info">
+                    Графики 181-185
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_38.html">Страница 38</a>
+                <div class="page-info">
+                    Графики 186-190
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_39.html">Страница 39</a>
+                <div class="page-info">
+                    Графики 191-195
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_40.html">Страница 40</a>
+                <div class="page-info">
+                    Графики 196-200
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_41.html">Страница 41</a>
+                <div class="page-info">
+                    Графики 201-205
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_42.html">Страница 42</a>
+                <div class="page-info">
+                    Графики 206-210
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_43.html">Страница 43</a>
+                <div class="page-info">
+                    Графики 211-215
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_44.html">Страница 44</a>
+                <div class="page-info">
+                    Графики 216-220
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_45.html">Страница 45</a>
+                <div class="page-info">
+                    Графики 221-225
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_46.html">Страница 46</a>
+                <div class="page-info">
+                    Графики 226-230
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_47.html">Страница 47</a>
+                <div class="page-info">
+                    Графики 231-235
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_48.html">Страница 48</a>
+                <div class="page-info">
+                    Графики 236-240
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_49.html">Страница 49</a>
+                <div class="page-info">
+                    Графики 241-245
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_50.html">Страница 50</a>
+                <div class="page-info">
+                    Графики 246-250
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_51.html">Страница 51</a>
+                <div class="page-info">
+                    Графики 251-255
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_52.html">Страница 52</a>
+                <div class="page-info">
+                    Графики 256-260
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_53.html">Страница 53</a>
+                <div class="page-info">
+                    Графики 261-265
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_54.html">Страница 54</a>
+                <div class="page-info">
+                    Графики 266-270
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_55.html">Страница 55</a>
+                <div class="page-info">
+                    Графики 271-275
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_56.html">Страница 56</a>
+                <div class="page-info">
+                    Графики 276-280
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_57.html">Страница 57</a>
+                <div class="page-info">
+                    Графики 281-285
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_58.html">Страница 58</a>
+                <div class="page-info">
+                    Графики 286-290
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_59.html">Страница 59</a>
+                <div class="page-info">
+                    Графики 291-295
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_60.html">Страница 60</a>
+                <div class="page-info">
+                    Графики 296-300
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_61.html">Страница 61</a>
+                <div class="page-info">
+                    Графики 301-305
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_62.html">Страница 62</a>
+                <div class="page-info">
+                    Графики 306-310
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_63.html">Страница 63</a>
+                <div class="page-info">
+                    Графики 311-315
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_64.html">Страница 64</a>
+                <div class="page-info">
+                    Графики 316-320
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_65.html">Страница 65</a>
+                <div class="page-info">
+                    Графики 321-325
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_66.html">Страница 66</a>
+                <div class="page-info">
+                    Графики 326-330
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_67.html">Страница 67</a>
+                <div class="page-info">
+                    Графики 331-335
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_68.html">Страница 68</a>
+                <div class="page-info">
+                    Графики 336-340
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_69.html">Страница 69</a>
+                <div class="page-info">
+                    Графики 341-345
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_70.html">Страница 70</a>
+                <div class="page-info">
+                    Графики 346-350
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_71.html">Страница 71</a>
+                <div class="page-info">
+                    Графики 351-355
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_72.html">Страница 72</a>
+                <div class="page-info">
+                    Графики 356-360
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_73.html">Страница 73</a>
+                <div class="page-info">
+                    Графики 361-365
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_74.html">Страница 74</a>
+                <div class="page-info">
+                    Графики 366-370
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_75.html">Страница 75</a>
+                <div class="page-info">
+                    Графики 371-375
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_76.html">Страница 76</a>
+                <div class="page-info">
+                    Графики 376-380
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_77.html">Страница 77</a>
+                <div class="page-info">
+                    Графики 381-385
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_78.html">Страница 78</a>
+                <div class="page-info">
+                    Графики 386-390
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_79.html">Страница 79</a>
+                <div class="page-info">
+                    Графики 391-395
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_80.html">Страница 80</a>
+                <div class="page-info">
+                    Графики 396-400
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_81.html">Страница 81</a>
+                <div class="page-info">
+                    Графики 401-405
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_82.html">Страница 82</a>
+                <div class="page-info">
+                    Графики 406-410
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_83.html">Страница 83</a>
+                <div class="page-info">
+                    Графики 411-415
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_84.html">Страница 84</a>
+                <div class="page-info">
+                    Графики 416-420
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_85.html">Страница 85</a>
+                <div class="page-info">
+                    Графики 421-425
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_86.html">Страница 86</a>
+                <div class="page-info">
+                    Графики 426-430
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_87.html">Страница 87</a>
+                <div class="page-info">
+                    Графики 431-435
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_88.html">Страница 88</a>
+                <div class="page-info">
+                    Графики 436-440
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_89.html">Страница 89</a>
+                <div class="page-info">
+                    Графики 441-445
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_90.html">Страница 90</a>
+                <div class="page-info">
+                    Графики 446-450
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_91.html">Страница 91</a>
+                <div class="page-info">
+                    Графики 451-455
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_92.html">Страница 92</a>
+                <div class="page-info">
+                    Графики 456-460
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_93.html">Страница 93</a>
+                <div class="page-info">
+                    Графики 461-465
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_94.html">Страница 94</a>
+                <div class="page-info">
+                    Графики 466-470
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_95.html">Страница 95</a>
+                <div class="page-info">
+                    Графики 471-475
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_96.html">Страница 96</a>
+                <div class="page-info">
+                    Графики 476-480
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_97.html">Страница 97</a>
+                <div class="page-info">
+                    Графики 481-485
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_98.html">Страница 98</a>
+                <div class="page-info">
+                    Графики 486-490
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_99.html">Страница 99</a>
+                <div class="page-info">
+                    Графики 491-495
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_100.html">Страница 100</a>
+                <div class="page-info">
+                    Графики 496-500
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_101.html">Страница 101</a>
+                <div class="page-info">
+                    Графики 501-505
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_102.html">Страница 102</a>
+                <div class="page-info">
+                    Графики 506-510
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_103.html">Страница 103</a>
+                <div class="page-info">
+                    Графики 511-515
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_104.html">Страница 104</a>
+                <div class="page-info">
+                    Графики 516-520
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_105.html">Страница 105</a>
+                <div class="page-info">
+                    Графики 521-525
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_106.html">Страница 106</a>
+                <div class="page-info">
+                    Графики 526-530
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_107.html">Страница 107</a>
+                <div class="page-info">
+                    Графики 531-535
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_108.html">Страница 108</a>
+                <div class="page-info">
+                    Графики 536-540
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_109.html">Страница 109</a>
+                <div class="page-info">
+                    Графики 541-545
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_110.html">Страница 110</a>
+                <div class="page-info">
+                    Графики 546-550
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_111.html">Страница 111</a>
+                <div class="page-info">
+                    Графики 551-555
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_112.html">Страница 112</a>
+                <div class="page-info">
+                    Графики 556-560
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_113.html">Страница 113</a>
+                <div class="page-info">
+                    Графики 561-565
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_114.html">Страница 114</a>
+                <div class="page-info">
+                    Графики 566-570
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_115.html">Страница 115</a>
+                <div class="page-info">
+                    Графики 571-575
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_116.html">Страница 116</a>
+                <div class="page-info">
+                    Графики 576-580
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_117.html">Страница 117</a>
+                <div class="page-info">
+                    Графики 581-585
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_118.html">Страница 118</a>
+                <div class="page-info">
+                    Графики 586-590
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_119.html">Страница 119</a>
+                <div class="page-info">
+                    Графики 591-595
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_120.html">Страница 120</a>
+                <div class="page-info">
+                    Графики 596-600
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_121.html">Страница 121</a>
+                <div class="page-info">
+                    Графики 601-605
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_122.html">Страница 122</a>
+                <div class="page-info">
+                    Графики 606-610
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_123.html">Страница 123</a>
+                <div class="page-info">
+                    Графики 611-615
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_124.html">Страница 124</a>
+                <div class="page-info">
+                    Графики 616-620
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_125.html">Страница 125</a>
+                <div class="page-info">
+                    Графики 621-625
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_126.html">Страница 126</a>
+                <div class="page-info">
+                    Графики 626-630
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_127.html">Страница 127</a>
+                <div class="page-info">
+                    Графики 631-635
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_128.html">Страница 128</a>
+                <div class="page-info">
+                    Графики 636-640
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_129.html">Страница 129</a>
+                <div class="page-info">
+                    Графики 641-645
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_130.html">Страница 130</a>
+                <div class="page-info">
+                    Графики 646-650
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_131.html">Страница 131</a>
+                <div class="page-info">
+                    Графики 651-655
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_132.html">Страница 132</a>
+                <div class="page-info">
+                    Графики 656-660
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_133.html">Страница 133</a>
+                <div class="page-info">
+                    Графики 661-665
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_134.html">Страница 134</a>
+                <div class="page-info">
+                    Графики 666-670
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_135.html">Страница 135</a>
+                <div class="page-info">
+                    Графики 671-675
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_136.html">Страница 136</a>
+                <div class="page-info">
+                    Графики 676-680
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_137.html">Страница 137</a>
+                <div class="page-info">
+                    Графики 681-685
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_138.html">Страница 138</a>
+                <div class="page-info">
+                    Графики 686-690
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_139.html">Страница 139</a>
+                <div class="page-info">
+                    Графики 691-695
+                </div>
+            </div>
+            <div class="page-card">
+                <a href="charts_page_140.html">Страница 140</a>
+                <div class="page-info">
+                    Графики 696-699
+                </div>
+            </div>
+        </div>
+        
+        <div class="back-home">
+            <a href="index.html">← Главная страница</a>
+        </div>
+    </div>
+
+    <script>
+        let tokensData = null;
+        
+        // Load tokens data
+        async function loadTokensData() {
+            try {
+                console.log('Attempting to load tokens data from: processed_tokens.json');
+                const response = await fetch('processed_tokens.json');
+                console.log('Response status:', response.status, response.statusText);
+                if (response.ok) {
+                    tokensData = await response.json();
+                    console.log('Tokens data loaded successfully:', Object.keys(tokensData.tokens || {}).length, 'tokens');
+                    console.log('Sample token data:', Object.values(tokensData.tokens)[0]);
+                } else {
+                    console.error('Failed to load tokens data. Status:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Error loading tokens data:', error);
+            }
+        }
+        
+        // Validate Solana address format (basic check)
+        function isValidSolanaAddress(address) {
+            // Basic Solana address validation: 32-44 characters, base58
+            const base58Regex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+            return base58Regex.test(address);
+        }
+        
+        // Find chart page for token
+        function findTokenChartPage(tokenAddress) {
+            if (!tokensData || !tokensData.tokens) {
+                return 'charts_page_1.html'; // fallback
+            }
+            
+            // Get all token addresses in order they were processed
+            const tokenEntries = Object.entries(tokensData.tokens)
+                .sort((a, b) => new Date(a[1].processed_at) - new Date(b[1].processed_at));
+            
+            // Find the index of our token
+            const tokenIndex = tokenEntries.findIndex(([key, token]) =>
+                token.token_address === tokenAddress
+            );
+            
+            if (tokenIndex === -1) {
+                return 'charts_page_1.html'; // fallback if not found
+            }
+            
+            // Calculate page number (assuming 5 charts per page)
+            const chartsPerPage = 5;
+            const pageNumber = Math.floor(tokenIndex / chartsPerPage) + 1;
+            
+            return `charts_page_${pageNumber}.html`;
+        }
+        
+        // Search for token by address
+        function searchToken() {
+            const searchInput = document.getElementById('tokenSearch');
+            const searchResult = document.getElementById('searchResult');
+            const searchButton = document.getElementById('searchButton');
+            
+            const address = searchInput.value.trim();
+            
+            // Clear previous results
+            searchResult.style.display = 'none';
+            searchResult.className = 'search-result';
+            
+            // Validate input
+            if (!address) {
+                showSearchResult('error', 'Пожалуйста, введите адрес токена');
+                return;
+            }
+            
+            // Validate Solana address format
+            if (!isValidSolanaAddress(address)) {
+                showSearchResult('error', 'Некорректный формат адреса Solana. Адрес должен содержать 32-44 символа и состоять из допустимых символов base58.');
+                return;
+            }
+            
+            // Check if tokens data is loaded
+            if (!tokensData || !tokensData.tokens) {
+                showSearchResult('error', 'Данные токенов не загружены. Попробуйте позже.');
+                return;
+            }
+            
+            // Search for token
+            let foundToken = null;
+            let foundKey = null;
+            
+            // First try exact address match
+            for (const [key, token] of Object.entries(tokensData.tokens)) {
+                if (token.token_address === address) {
+                    foundToken = token;
+                    foundKey = key;
+                    break;
+                }
+            }
+            
+            // If not found by exact address, try partial address match
+            if (!foundToken) {
+                for (const [key, token] of Object.entries(tokensData.tokens)) {
+                    // Check if address starts with input
+                    if (token.token_address.toLowerCase().startsWith(address.toLowerCase())) {
+                        foundToken = token;
+                        foundKey = key;
+                        break;
+                    }
+                }
+            }
+            
+            if (foundToken) {
+                const tokenName = foundToken.token_name || 'Неизвестно';
+                const processedDate = new Date(foundToken.processed_at).toLocaleString('ru-RU');
+                const chartPage = findTokenChartPage(foundToken.token_address);
+                
+                showSearchResult('success',
+                    `✅ Токен найден!`,
+                    `<div class="token-info">
+                        <strong>Название:</strong> ${tokenName}<br>
+                        <strong>Адрес:</strong> ${foundToken.token_address}<br>
+                        <strong>Обработан:</strong> ${processedDate}
+                    </div>
+                    <a href="${chartPage}#${foundToken.token_address}" class="token-link">Перейти к графику</a>`
+                );
+            } else {
+                showSearchResult('error', 'Токен с указанным адресом не найден в базе данных.');
+            }
+        }
+        
+        // Show search result
+        function showSearchResult(type, message, additionalContent = '') {
+            const searchResult = document.getElementById('searchResult');
+            searchResult.className = `search-result ${type}`;
+            searchResult.innerHTML = message + additionalContent;
+            searchResult.style.display = 'block';
+        }
+        
+        // Initialize page
+        window.addEventListener('load', function() {
+            loadTokensData();
+            
+            // Add event listeners
+            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.getElementById('tokenSearch');
+            
+            if (searchButton && searchInput) {
+                searchButton.addEventListener('click', searchToken);
+                
+                // Allow search on Enter key
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchToken();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
